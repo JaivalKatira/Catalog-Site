@@ -1,16 +1,23 @@
 // ---- Phone input (country code selector) ----
+// Wrapped in try/catch so a failed CDN load can't break the whole form.
+let iti = null;
 const phoneInput = document.querySelector("#phone");
-const iti = window.intlTelInput(phoneInput, {
-  initialCountry: "auto",
-  geoIpLookup: function (callback) {
-    fetch("https://ipapi.co/json")
-      .then((res) => res.json())
-      .then((data) => callback(data.country_code))
-      .catch(() => callback("us"));
-  },
-  utilsScript:
-    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-});
+
+try {
+  iti = window.intlTelInput(phoneInput, {
+    initialCountry: "auto",
+    geoIpLookup: function (callback) {
+      fetch("https://ipapi.co/json")
+        .then((res) => res.json())
+        .then((data) => callback(data.country_code))
+        .catch(() => callback("us"));
+    },
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+  });
+} catch (err) {
+  console.error("intl-tel-input failed to load, falling back to plain validation:", err);
+}
 
 // ---- Elements ----
 const form = document.getElementById("leadForm");
@@ -28,8 +35,13 @@ const phoneError = document.getElementById("phoneError");
 
 // ---- Validation ----
 function isValidEmail(value) {
-  // Simple, practical email check (not a full RFC5322 parser)
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+}
+
+// Fallback phone check used only if intl-tel-input didn't load
+function isValidPhoneFallback(value) {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 7;
 }
 
 function clearErrors() {
@@ -56,8 +68,9 @@ function validate() {
     valid = false;
   }
 
-  if (!iti.isValidNumber()) {
-    phoneError.textContent = "Enter a valid phone number for the selected country.";
+  const phoneOk = iti ? iti.isValidNumber() : isValidPhoneFallback(phoneInput.value);
+  if (!phoneOk) {
+    phoneError.textContent = "Enter a valid phone number.";
     phoneInput.classList.add("invalid");
     valid = false;
   }
@@ -84,6 +97,7 @@ async function saveLead({ name, email, phone }) {
   }
 }
 
+// This listener now attaches no matter what happened above.
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!validate()) return;
@@ -94,7 +108,7 @@ form.addEventListener("submit", async (e) => {
   const payload = {
     name: nameInput.value.trim(),
     email: emailInput.value.trim(),
-    phone: iti.getNumber(), // full E.164 number, e.g. +14155552671
+    phone: iti ? iti.getNumber() : phoneInput.value.trim(),
   };
 
   try {
