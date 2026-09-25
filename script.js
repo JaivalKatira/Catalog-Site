@@ -13,7 +13,7 @@ try {
         .catch(() => callback("us"));
     },
     utilsScript:
-      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
   });
 } catch (err) {
   console.error("intl-tel-input failed to load, falling back to plain validation:", err);
