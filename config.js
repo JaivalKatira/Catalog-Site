@@ -3,5 +3,5 @@
 // what keeps your data private is the Row Level Security policy in
 // supabase-schema.sql, NOT secrecy of this key. See README.md.
 
-const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR-PUBLIC-ANON-KEY";
+const SUPABASE_URL = "https://vhtiophwnecqligzjtgq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_IitLXslry9Ewpne6G1sDIQ_rxICDRkg";
