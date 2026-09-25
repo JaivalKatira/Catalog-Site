@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get the Guide</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css">
+</head>
+<body>
+
+  <main class="wrap">
+    <div class="card" id="card">
+
+      <!-- STEP 1: FORM -->
+      <section id="formStep" class="step">
+        <p class="eyebrow">Free download</p>
+        <h1>Get instant access</h1>
+        <p class="sub">Tell us where to reach you and the file is yours.</p>
+
+        <form id="leadForm" novalidate>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name" required>
+          <span class="error" id="nameError"></span>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
+          <span class="error" id="emailError"></span>
+
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone number" autocomplete="tel" required>
+          <span class="error" id="phoneError"></span>
+
+          <button type="submit" id="submitBtn">
+            <span class="btnLabel">Continue</span>
+          </button>
+          <p class="formNote" id="formNote"></p>
+        </form>
+      </section>
+
+      <!-- STEP 2: DOWNLOAD -->
+      <section id="downloadStep" class="step hidden">
+        <p class="eyebrow">You're in</p>
+        <h1>Your download is ready</h1>
+        <p class="sub" id="thankYouMsg">Thanks — the file is ready when you are.</p>
+        <a href="assets/download.pdf" download class="downloadBtn" id="downloadBtn">Download PDF</a>
+      </section>
+
+    </div>
+    <p class="footNote">By submitting, you agree to be contacted about this download.</p>
+  </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInputWithUtils.min.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
