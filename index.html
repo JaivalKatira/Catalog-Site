@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get the Guide</title>
+<title>Brizall catalogue</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
 </head>
 <body>
+
+  <img src="assets/logo.png" alt="Brizall" class="logo">
 
   <main class="wrap">
     <div class="card" id="card">
 
       <!-- STEP 1: FORM -->
       <section id="formStep" class="step">
-        <p class="eyebrow">Free download</p>
         <h1>Get instant access</h1>
-        <p class="sub">Tell us where to reach you and the file is yours.</p>
+        <p class="sub">Tell us where to reach you</p>
 
         <form id="leadForm" novalidate>
           <label for="name">Name</label>
@@ -40,17 +41,16 @@
 
       <!-- STEP 2: DOWNLOAD -->
       <section id="downloadStep" class="step hidden">
-        <p class="eyebrow">You're in</p>
         <h1>Your download is ready</h1>
-        <p class="sub" id="thankYouMsg">Thanks — the file is ready when you are.</p>
-        <a href="assets/download.pdf" download class="downloadBtn" id="downloadBtn">Download PDF</a>
+        <p class="sub" id="thankYouMsg">Thank you for reaching out! the file is ready when you are.</p>
+        <a href="assets/download.pdf" download class="downloadBtn" id="downloadBtn">Download Catalogue</a>
       </section>
 
     </div>
-    <p class="footNote">By submitting, you agree to be contacted about this download.</p>
+    <p class="footNote">By submitting, you agree to be contacted about this catalogue.</p>
   </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 <script src="config.js"></script>
 <script src="script.js"></script>
 </body>
